@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATM Management System</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">A</div>
+    <div><strong>ATM Portal</strong><small>ATM Management System</small></div>
+    <span class="secure-label">● Local demo</span>
+  </header>
+
+  <main class="page">
+    <section id="login-view" class="login-layout">
+      <div class="intro">
+        <p class="eyebrow">SIMPLE · SECURE · CONVENIENT</p>
+        <h1>Your money.<br><span>Your control.</span></h1>
+        <p>Sign in to view your balance, make deposits and withdrawals, and review recent transactions.</p>
+        <div class="feature-list">
+          <div><span>✓</span> Balance at a glance</div>
+          <div><span>✓</span> Deposits and withdrawals</div>
+          <div><span>✓</span> Recent transaction history</div>
+        </div>
+      </div>
+      <form id="login-form" class="panel login-panel">
+        <div class="panel-icon">↗</div>
+        <h2>Welcome back</h2>
+        <p class="muted">Enter your account details to continue.</p>
+        <label for="account-number">Account number</label>
+        <input id="account-number" name="accountNumber" autocomplete="username" placeholder="Enter account number" required>
+        <label for="pin">4-digit PIN</label>
+        <input id="pin" name="pin" type="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="current-password" placeholder="••••" required>
+        <button class="primary full" type="submit">Sign in <span>→</span></button>
+        <p id="login-message" class="message" role="status"></p>
+        <p class="demo-note">Demo account: <strong>1001001</strong> · PIN: <strong>1234</strong></p>
+      </form>
+    </section>
+
+    <section id="dashboard-view" class="hidden">
+      <div class="welcome-row">
+        <div><p class="eyebrow">ACCOUNT OVERVIEW</p><h1>Hello, <span id="holder-name">Customer</span></h1><p class="muted">Here is your account summary.</p></div>
+        <button id="logout-button" class="secondary">Log out ↗</button>
+      </div>
+      <div class="balance-card">
+        <div><p>Available balance</p><h2 id="balance">₹0.00</h2><small>Account <span id="masked-account">••••</span></small></div>
+        <div class="balance-symbol">₹</div>
+      </div>
+      <div class="section-heading"><div><h2>Quick actions</h2><p class="muted">Choose an operation</p></div></div>
+      <div class="actions-grid">
+        <button class="action-card" data-action="deposit"><span class="action-icon green">＋</span><strong>Deposit money</strong><small>Add funds to your account</small></button>
+        <button class="action-card" data-action="withdraw"><span class="action-icon orange">−</span><strong>Withdraw money</strong><small>Withdraw from your balance</small></button>
+        <button class="action-card" data-action="history"><span class="action-icon blue">↻</span><strong>Transactions</strong><small>Review recent activity</small></button>
+        <button class="action-card" data-action="pin"><span class="action-icon purple">⌑</span><strong>Change PIN</strong><small>Update your account PIN</small></button>
+      </div>
+      <section id="operation-panel" class="panel operation-panel hidden">
+        <div class="operation-header"><div><p class="eyebrow">ACCOUNT SERVICES</p><h2 id="operation-title">Deposit money</h2></div><button id="close-operation" class="icon-button" aria-label="Close">×</button></div>
+        <form id="amount-form" class="hidden">
+          <label for="amount">Amount (INR)</label>
+          <input id="amount" type="number" min="0.01" max="1000000" step="0.01" placeholder="e.g. 500.00" required>
+          <button class="primary" id="amount-submit" type="submit">Confirm</button>
+        </form>
+        <form id="pin-form" class="hidden">
+          <label for="current-pin">Current PIN</label><input id="current-pin" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" required>
+          <label for="new-pin">New 4-digit PIN</label><input id="new-pin" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" required>
+          <button class="primary" type="submit">Update PIN</button>
+        </form>
+        <div id="history-list" class="history-list hidden"></div>
+        <p id="operation-message" class="message" role="status"></p>
+      </section>
+    </section>
+    <div id="toast" class="toast hidden" role="status"></div>
+  </main>
+  <footer>ATM Management System · Educational project</footer>
+</body>
+</html>
